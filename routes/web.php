@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 
 Route::get('/ff', function () {
-    return view('users.index');
+    return view('livestream');
 });
 
 

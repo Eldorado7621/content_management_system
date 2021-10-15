@@ -6,7 +6,7 @@
         </button>
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ route('home') }}">
-            <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="...">
+            <img src="{{ asset('argon') }}/img/brand/rlogo.png" class="navbar-brand-img" alt="logo">
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
@@ -94,6 +94,27 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('users.index') }}">
                                     {{ __('View Users') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('create_user') }}">
+                                    {{ __('Create User') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
+                        <i class="ni ni-circle-08 " style="color: #f4645f;"></i>
+                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Media') }}</span>
+                    </a>
+
+                    <div class="collapse" id="navbar-examples">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('users.index') }}">
+                                    {{ __('Livestream') }}
                                 </a>
                             </li>
                             <li class="nav-item">
