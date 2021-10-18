@@ -5,7 +5,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Brand -->
-        <a class="navbar-brand pt-0" href="{{ route('home') }}">
+        <a class="navbar-brand pt-0" href="{{ route('dashboard') }}">
             <img src="{{ asset('argon') }}/img/brand/rlogo.png" class="navbar-brand-img" alt="logo">
         </a>
         <!-- User -->
@@ -53,8 +53,8 @@
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
                     <div class="col-6 collapse-brand">
-                        <a href="{{ route('home') }}">
-                            <img src="{{ asset('argon') }}/img/brand/blue.png">
+                        <a href="{{ route('dashboard') }}">
+                            <img src="{{ asset('argon') }}/img/brand/rlogo.png">
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
@@ -79,14 +79,14 @@
             <!-- Navigation -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">
+                    <a class="nav-link" href="{{ route('dashboard') }}">
                         <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
-                        <i class="ni ni-circle-08 " style="color: #f4645f;"></i>
-                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Users') }}</span>
+                    <a class="nav-link" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
+                        <i class="ni ni-circle-08 " style="color: #808080;"></i>
+                        <span class="nav-link-text" style="color: #808080;">{{ __('Users') }}</span>
                     </a>
 
                     <div class="collapse" id="navbar-examples">
@@ -105,12 +105,12 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
-                        <i class="ni ni-circle-08 " style="color: #f4645f;"></i>
-                        <span class="nav-link-text" style="color: #f4645f;">{{ __('Media') }}</span>
+                    <a class="nav-link" href="#media" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
+                        <i class="ni ni-laptop" style="color: #808080;"></i>
+                        <span class="nav-link-text" style="color: #808080;">{{ __('Media') }}</span>
                     </a>
 
-                    <div class="collapse" id="navbar-examples">
+                    <div class="collapse" id="media">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('users.index') }}">
@@ -119,8 +119,60 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('create_user') }}">
-                                    {{ __('Create User') }}
+                                    {{ __('') }}
                                 </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#web" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
+                        <i class="ni ni-world-2" style="color: #808080;"></i>
+                        <span class="nav-link-text" style="color: #808080;">{{ __('Website Management') }}</span>
+                    </a>
+
+                    <div class="collapse" id="web">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ route('banners.index') }}">
+                                    {{ __('Banner') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('about.index') }}">
+                                    {{ __('About Us') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('monthly-theme.index') }}">
+                                    {{ __('Monthly Theme') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('sermon.index') }}">
+                                    {{ __('Sermons') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#event" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="event">
+                               
+                                 <span class="nav-link-text" style="color: #808080;">{{ __('Church Programs') }}</span>
+                               </a> 
+                               <div class="collapse" id="event">
+                                  <ul class="nav nav-sm flex-column">
+                                      
+                                  <li class="nav-item">
+                                      <a class="nav-link" href="{{ route('event.index') }}">
+                                    {{ __('View All') }}
+                                     </a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" href="{{ route('event.create_event') }}">
+                                    {{ __('Create Program') }}
+                                     </a>
+                                  </li>
+                             </ul>
+                            </div>
                             </li>
                         </ul>
                     </div>
