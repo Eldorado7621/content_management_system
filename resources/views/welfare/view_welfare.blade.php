@@ -33,12 +33,12 @@
 
       <div class="container">
         
-        <h1 class="page-title" style="margin-top:100px;">Programs List</h1>
+        <h1 class="page-title" style="margin-top:100px;">Church Welfare</h1>
 
         <ul class="breadcrumbs">
 
           <li><a href="">Home</a></li>
-          <li>Programs List</li>
+          <li>Church Welfare </li>
 
         </ul>
 
@@ -56,7 +56,7 @@
         
         <div class="content-element2">
           
-          <h3 class="title">Church Programs for {{date('Y')}}</h3>
+          <h3 class="title">Church Welfare Programs</h3>
 
           <hr class="item-divider">
 
@@ -65,42 +65,38 @@
         <div class="event-box style-2 list-type">
           
           <!-- Event -->
-       
-          
-          @foreach($events as $event)
-          <div class="event">
+        @foreach($welfares as $welfare)
+        <div class="event">
 
             <div class="event-date">
               
-              <h3 class="numb">{{date('d', strtotime($event->from))}}</h3>
-              <h6 class="month">{{ date('F', strtotime($event->from))}}</h6>
+              <h3 class="numb">{{date('d', strtotime($welfare->date))}}</h3>
+              <h6 class="month">{{date('F', strtotime($welfare->date))}}</h6>
               
 
             </div>
 
             <div class="event-img">
               
-              <a href="#"><img src="images/545x308_img5.jpg" alt=""></a>
+              <a href="#"><img src="{{$welfare->image}}" alt=""></a>
 
             </div>
             
-            <div class="">
+            <div class="event-body">
               
-              <h5 class="event-title"><a href="#">{{$event->theme}}</a></h5>
+              <h5 class="event-title"><a href="#">{{$welfare->title}}</a> </h5>
 
-              @foreach($event->event_details as $detail)
-                <p>{{$detail->title}}<p>
-                <p>{{$detail->date}} @ {{$detail->time_from}} - {{$detail->time_to}}
-                {{$detail->venue}}</p>
-              @endforeach
-             
+              <p>{{$welfare->details}}</p>
+              
 
             </div>
 
           </div>
-          @endforeach
+          
+         
 
         </div>
+        @endforeach
 
         
       </div>

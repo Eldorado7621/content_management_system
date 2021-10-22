@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ChurchEvent;
+
+use App\Models\EventDetail;
 use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
@@ -16,6 +18,8 @@ class EventController extends Controller
     public function index()
     {
         //
+        $events= ChurchEvent::paginate(5);
+        return view("event.view_events")->with('events',$events);
     }
 
     /**
@@ -41,7 +45,10 @@ class EventController extends Controller
            $event->user_id=Auth::user()->id;
    
            if($event->save()) {
-               return back()->with('success','File uploaded successfully');
+               $event=ChurchEvent::latest()->first();
+               $event=$event->id;
+              
+               return back()->with(['success'=>'File uploaded successfully','event'=>$event]);
            }
            else
            {
@@ -75,7 +82,7 @@ class EventController extends Controller
     public function create_event()
     {
         //
-        return view("event.create_church_event");
+        return view("event.create_church_event")->with('event',0);
     }
     /**
      * Remove the specified resource from storage.
@@ -86,5 +93,29 @@ class EventController extends Controller
     public function destroy($id)
     {
         //
+        if( $event = ChurchEvent::findOrFail($id))
+        {
+            $event_detail=EventDetail::where('church_event_id',$id);
+            $event->delete();
+            $event_detail->delete();
+          return back()->with('success','Program Deleted successfully');
+         }
+         else
+         {
+            return back()->with('error','Unable to Delete Event ');   
+         }
+    }
+    public function upcoming_event()
+    {
+       $events=ChurchEvent::whereYear('from', '=',date('Y'))->orderBy('from', 'asc')->get();
+       //dd($events);
+       if($events !=null)
+       {
+        
+        return view('events')->with('events',$events);
+
+      }
+      return view('events')->with('events',$events);
+      
     }
 }

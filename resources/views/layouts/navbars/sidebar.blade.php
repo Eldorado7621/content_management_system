@@ -161,18 +161,44 @@
                                <div class="collapse" id="event">
                                   <ul class="nav nav-sm flex-column">
                                       
-                                  <li class="nav-item">
-                                      <a class="nav-link" href="{{ route('event.index') }}">
-                                    {{ __('View All') }}
-                                     </a>
-                                  </li>
+                                
                                   <li class="nav-item">
                                       <a class="nav-link" href="{{ route('event.create_event') }}">
                                     {{ __('Create Program') }}
                                      </a>
                                   </li>
-                             </ul>
-                            </div>
+                                  <li class="nav-item">
+                                      <a class="nav-link" href="{{ route('event.index') }}">
+                                    {{ __('View Events') }}
+                                     </a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" href="{{ route('event_details.index') }}">
+                                    {{ __('View Events Details') }}
+                                     </a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" href="{{ route('church_program.index') }}">
+                                    {{ __('View Church Program') }}
+                                     </a>
+                                  </li>
+                               </ul>
+                              </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('testimony.index') }}">
+                                    {{ __('Testimony') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('contact.index') }}">
+                                    {{ __('Church Contact') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('welfare.index') }}">
+                                    {{ __('Church Welfare') }}
+                                </a>
                             </li>
                         </ul>
                     </div>

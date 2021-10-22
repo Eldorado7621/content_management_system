@@ -222,10 +222,7 @@
 
                 <div class="pre-title">Next Event in:</div>
                 
-                <div class="content-element1">
-                  <div class="countdown style-2" data-year="2018" data-month="9" data-day="1" data-hours="15" data-minutes="0" data-seconds="0"></div>
-                </div>
-                
+                @if($upcoming_event !=null)
                 <!-- Events area -->
                 <div class="event-box">
                   
@@ -233,30 +230,23 @@
                   <div class="event">
                     
                     <div class="event-body">
+                    @foreach($upcoming_event->event_details as $detail)
+                    <h3 class="event-title">{{$detail->title}}</h3>
+
+                      <h4 class="event-minister">with- {{$detail->minister}} </h4>
                       
-                      <h3 class="event-title">Egg Drop</h3>
-                
-                      <p class="e-info">March 16, 2018 @ 12:00 AM - 5:00 PM <br>
-                      8901 Marmora Road, Glasgow, D04 89GR</p>
-                
+                      <p class="e-info">{{$detail->date}}- @ {{$detail->time_from}}- - {{$detail->time_to}}- <br>
+                      {{$detail->venue}}-</p>
+
+                      @endforeach
                     </div>
                 
-                    <div class="event-action flex-row align-items-center">
-                      
-                      <a href="#" class="btn">Register</a>
-                      <div class="event-icons">
-                        
-                        <a href="#"><i class="licon-share2"></i></a>
-                        <a href="#"><i class="licon-map-marker"></i></a>
-                        <a href="#"><i class="licon-at-sign"></i></a>
-                
-                      </div>
-                
-                    </div>
+                    
                 
                   </div>
                 
                 </div>
+                @endif
                 
               </div>
 
@@ -269,32 +259,28 @@
               <div class="event-box style-2">
                 
                 <!-- Event -->
+                @if($upcoming_event !=null)
                 <div class="event">
 
                   <div class="event-date">
-                    
-                    <h3 class="numb">18</h3>
-                    <h6 class="month">March</h6>
-                    <div class="day">Monday</div>
+                    <h3 class="numb">{{ substr(date('F', strtotime($upcoming_event->from)),0,3)}}</h3>
+                    <h6 class="month">{{date('d', strtotime($upcoming_event->from))}}</h6>
 
                   </div>
-                  
                   <div class="event-body">
                     
-                    <h5 class="event-title">Mission Vision School </h5>
-
-                    <p class="e-info">March 18, 2018 @ 12:00 AM - 5:00 PM
-                    8901 Marmora Road, Glasgow, D04 89GR</p>
-
+                    <h5 class="event-title">{{$upcoming_event->theme}} </h5>
+                   
                   </div>
                 </div>
+                @endif
 
                 
                 
 
               </div>
 
-              <a href="/events" class="btn btn-small btn-style-4">More Events</a>
+              <a href="{{route('upcoming_event')}}" class="btn btn-small btn-style-4">More Events</a>
 
             </div>
 
@@ -313,21 +299,23 @@
           
             <div class="owl-carousel testimonial-holder style-2" data-max-items="1" data-autoplay="true">
           
-              <!-- Slide -->                  
+              <!-- Slide -->       
+              @foreach($testimonys as $testimony)           
+                       
               <div class="item-carousel">
                 <!-- Carousel Item -->                  
                 <!-- - - - - - - - - - - - - - Testimonial - - - - - - - - - - - - - - - - -->
                 <div class="testimonial">
                   
                   <blockquote>
-                    <p>Mauris accumsan nulla vel diam. Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet sit amet, euismod in. </p>
-                  </blockquote>
+                   <p>{{$testimony->testimony}}</p>
+                </blockquote>
                   
                   <div class="author-box">
                     
                     <div class="author-info">
-                      <div class="author">Ivana Wong</div>
-                      <a href="#" class="author-position">Teacher</a>
+                      <div class="author">{{$testimony->name}}</div>
+                      <a href="#" class="author-position">{{$testimony->proffession}}</a>
                     </div>
 
                   </div>
@@ -336,30 +324,7 @@
                 <!-- /Carousel Item --> 
               </div>
               <!-- /Slide -->
-          
-              <!-- Slide -->                  
-              <div class="item-carousel">
-                <!-- Carousel Item -->                  
-                <!-- - - - - - - - - - - - - - Testimonial - - - - - - - - - - - - - - - - -->
-                <div class="testimonial">
-                  
-                  <blockquote>
-                    <p>Mauris accumsan nulla vel diam. Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede mi, aliquet sit amet, euismod in. </p>
-                  </blockquote>
-                  
-                  <div class="author-box">
-                    
-                    <div class="author-info">
-                      <div class="author">John McCoist</div>
-                      <a href="#" class="author-position">Musician</a>
-                    </div>
-
-                  </div>
-          
-                </div>
-                <!-- /Carousel Item --> 
-              </div>
-              <!-- /Slide -->
+              @endforeach
 
               <!-- Slide -->                  
               <div class="item-carousel">
@@ -582,27 +547,28 @@
         <div class="container wide">
           
           <div class="our-info">
-        
+        @foreach($contacts as $contact)
             <div class="info-item">
               <i class="licon-telephone"></i>
               <div class="wrapper">
-                <p content="telephone=no">+1 800 559 6580</p>
+                <p content="telephone=no">{{$contact->phn_no}}</p>
               </div>
             </div>
 
             <div class="info-item">
               <i class="licon-map-marker"></i>
               <div class="wrapper">
-                <p>9863 - 9867 Mill Road, <br> Cambridge, MG09 99HT </p>
+                <p>{{$contact->address}} </p>
               </div>
             </div>
 
             <div class="info-item">
               <i class="licon-envelope"></i>
               <div class="wrapper">
-                <p><a href="#">mail@companyname.com</a></p>
+                <p><a href="#">{{$contact->email}}</a></p>
               </div>
             </div>
+            @endforeach
 
           </div>
 

@@ -44,7 +44,7 @@
 
               <nav id="main-navigation" class="main-navigation">
                 <ul id="menu" class="clearfix">
-                  <li class="current"><a href="#">dashboard</a>
+                  <li class="current"><a href="{{route('home')}}">Home</a>
                    
                   </li>
                   <li><a href="#">The Church</a>

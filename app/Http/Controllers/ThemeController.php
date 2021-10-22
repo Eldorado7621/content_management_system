@@ -72,6 +72,12 @@ class ThemeController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'title' => 'required',
+             'reference'=>'required',
+            'message'=>'required',
+            
+           ]);
         $theme = Theme::find($id);
 
         $theme->title = $request->title;

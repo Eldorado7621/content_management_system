@@ -6,6 +6,9 @@ use App\Models\Banner;
 use App\Models\About;
 use App\Models\Theme;
 use App\Models\Sermon;
+use App\Models\ChurchEvent;
+use App\Models\Testimony;
+use App\Models\Contact;
 
 use Illuminate\Http\Request;
 
@@ -34,18 +37,26 @@ class HomeController extends Controller
         {
             $sermon= Sermon::orderBy('id', 'desc')->take(3)->get();
         }
+        $testimonys=Testimony::all();
+        $count = $testimonys->count();
+        if($count>2)
+        {
+            $testimonys= Testimony::orderBy('id', 'desc')->take(3)->get();
+        }
+        
+        $upcoming_event=ChurchEvent::where('from','>=',date('Y-m-d'))->orderBy('from', 'asc')->first();
 
-      
-
-
-
+        $contacts= Contact::orderBy('id', 'desc')->take(1)->get();
         $banners=Banner::all();
         $about=About::all();
         $theme=Theme::all();
         return view('index')->with(['banners'=>$banners,
                                     'about'=>$about,
                                     'theme'=>$theme,
-                                   'sermon'=>$sermon]);
+                                   'sermon'=>$sermon,
+                                    'upcoming_event'=>$upcoming_event,
+                                    'testimonys'=>$testimonys,
+                                    'contacts'=>$contacts]);
     }
 
     public function create_user()

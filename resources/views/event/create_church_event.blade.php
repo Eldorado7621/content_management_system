@@ -22,14 +22,55 @@
                     <div class="row align-items-center">
                    
                         <div class="col-8">
-                    @if (session('success'))
+                   @if (session('success'))
                      <div class="alert alert-success alert-dismissible fade show" role="alert">
                        <strong>{{session('success')}}</strong> 
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                      </div>
-                    @endif
+<!-- create the events details after the event must have beeen successfully created-->
+                     <h3 class="mb-0">Create Church Program</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12">
+                <h5 class="mb-0"><span style="color:red;">***</span> Add Event details below</h5>
+                 </div>
+
+                <div class="table-responsive" style="padding:10px;">
+                <form method="post" id="dynamic_form">
+                 @csrf
+                 <span id="result"></span>
+                 <table class="table table-bordered table-striped" id="user_table">
+				  <thead style="font-size:25px;">
+                   <tr>
+                    <th width="10%"style="">Date</th>
+                    <th width="30%"style="">Title</th>
+                    <th width="20%"style="">Minister</th>
+                    <th width="20%" style="">Venue</th>
+                    <th width="10%"style="">Time(Start)<span style="color:red;"> (hh:mm)</span></th>
+                    <th width="10%"style="">Time(End)<span style="color:red;"> (hh:mm)</span></th>
+                  </tr>
+                  </thead>
+				 <tbody>
+
+				 </tbody>
+                 <tfoot>
+                  <tr>
+                     <td colspan="6" align="right"></td>
+                     <td>
+                    
+                       <input type="submit" name="save" id="save" class="btn btn-primary" value="Save" />
+                    </td>
+                 </tr>
+                </tfoot>
+              </table>
+             </form>
+          </div>
+<!-- event details end-->
+               @else
                     @if (session('error'))
                      <div class="alert alert-danger alert-dismissible fade show" role="alert">
                        <strong>{{session('error')}}</strong> 
@@ -49,7 +90,7 @@
                       </button>
                     </div>
                     @endif
-                            <h3 class="mb-0">Create Church Program</h3>
+                   <h3 class="mb-0">Create Church Program</h3>
                         </div>
                     </div>
                 </div>
@@ -72,6 +113,7 @@
                     </form>
              
                 </div>
+               @endif
                 <div class="card-footer py-4">
                     <nav class="d-flex justify-content-end" aria-label="...">
                         
@@ -94,9 +136,14 @@
             
     <!-- Argon JS -->
     <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
-</body></html>
+</body>
+
+</html>
+
+
 <script>
 
+$(document).ready(function(){
 
  var count = 1;
 
@@ -106,10 +153,14 @@
  function dynamic_field(number)
  {
   html = '<tr>';
-        html += '<td><input type="text" name="name[]" class="form-control" /></td></br>';
-        html += '<td><input type="text" name="address[]" class="form-control" /></td>';
-        html += '<td style="display:none;"><input type="hidden" name="state[]" value="" class="form-control" /></td>';
-        html += '<td style="display:none;"><input type="hidden" name="lga[]" value="" class="form-control" /></td>';
+        html += '<td><input type="date" name="date[]" class="form-control" /></td></br>';
+        html += '<td><input type="text" name="title[]" class="form-control" /></td>';
+        html += '<td><input type="text" name="minister[]" class="form-control" /></td>';
+        html += '<td><input type="text" name="venue[]"  class="form-control" /></td>';
+        html += '<td><input type="number" name="hh_start[]"  style="width:50%;" placeholder="hh"/>:<input type="number" name="mm_start[]" placeholder="mm" style="width:50%;" /></td>';
+        html += '<td><input type="number" name="hh_end[]"  style="width:50%;" placeholder="hh"/>:<input type="number" name="mm_end[]" placeholder="mm" style="width:50%;" /></td>';
+
+        html += '<td><input type="hidden" name="event_id[]" value="{{session("event")}}" /></td>';
         if(number > 1)
         {
             html += '<td><button type="button" name="remove" id="" class="btn btn-danger remove">Remove</button></td></tr>';
@@ -135,7 +186,7 @@
  $('#dynamic_form').on('submit', function(event){
         event.preventDefault();
         $.ajax({
-            url:'',
+            url:'{{ route("event_details.store") }}',
             method:'post',
             data:$(this).serialize(),
             dataType:'json',

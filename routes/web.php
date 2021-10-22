@@ -13,6 +13,13 @@ use App\Http\Controllers\ThemeController;
 
 use App\Http\Controllers\SermonController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventDetailController;
+use App\Http\Controllers\ChurchProgramController;
+use App\Http\Controllers\TestimonyController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\WelfareController;
+
+
 
 
 /*
@@ -60,6 +67,7 @@ Route::get('/sermons-page', function () {
 
 Auth::routes();
 
+Route::get('/church-programs', [App\Http\Controllers\EventController::class, 'upcoming_event'])->name('upcoming_event');
 
 
 Route::get('/sermons-page', [App\Http\Controllers\SermonController::class, 'view_all'])->name('sermons_page');
@@ -89,6 +97,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::apiResource('event', EventController::class);
 
     Route::get('create-event', [EventController::class, 'create_event'])->name('event.create_event');
+
+    
+    Route::apiResource('event_details', EventDetailController::class);
+
+    Route::apiResource('church_program', ChurchProgramController::class);
+
+    Route::apiResource('testimony', TestimonyController::class);
+
+    Route::apiResource('contact', ContactController::class);
+
+    Route::apiResource('welfare', WelfareController::class);
+    
+    Route::get('church-welfare', [WelfareController::class, 'view_welfare'])->name('welfare.view_welfare');
     
 
 
