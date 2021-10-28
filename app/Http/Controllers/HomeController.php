@@ -9,6 +9,7 @@ use App\Models\Sermon;
 use App\Models\ChurchEvent;
 use App\Models\Testimony;
 use App\Models\Contact;
+use App\Models\Livestream;
 
 use Illuminate\Http\Request;
 
@@ -47,6 +48,18 @@ class HomeController extends Controller
         $upcoming_event=ChurchEvent::where('from','>=',date('Y-m-d'))->orderBy('from', 'asc')->first();
 
         $contacts= Contact::orderBy('id', 'desc')->take(1)->get();
+
+//Livestream
+
+        $livestream=Livestream::where('status', '=',true)->orderBy('created_at', 'asc')->first();
+        //$count=count($livestreams);
+        if($livestream !=null)
+        {
+            $livestatus=true;
+        }
+        else
+            $livestatus=false;
+
         $banners=Banner::all();
         $about=About::all();
         $theme=Theme::all();
@@ -56,7 +69,9 @@ class HomeController extends Controller
                                    'sermon'=>$sermon,
                                     'upcoming_event'=>$upcoming_event,
                                     'testimonys'=>$testimonys,
-                                    'contacts'=>$contacts]);
+                                    'contacts'=>$contacts,
+                                    'livestatus'=>$livestatus,
+                                    '$livestream'=>$livestream]);
     }
 
     public function create_user()

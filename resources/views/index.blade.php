@@ -74,10 +74,17 @@
           <div class="icons-item">
             <div class="item-box">
               <h3 class="icons-box-title"><a href="#">Vision Statement</a></h3>
-              <p>Introduction to our church Aenean auctor wisi et urna. Aliquam erat volutpat. Duis ac turpis. Donec sit amet eros. Lorem ipsum dolor. Mauris fermentum</p>
-              <div class="hidden-area">
-                <a href="#" class="btn btn-style-3">Read More</a>
-              </div>
+              <p>
+             1.To make heaven. </br>
+
+            2.To take as many people with us.</br>
+
+              3.To have a member of RCCG in every family of all nations.</br>
+
+              4.To accomplish No. 1 above, holiness will be our lifestyle.
+
+
+                <p> 
             </div>
           </div>
 
@@ -90,10 +97,14 @@
           <div class="icons-item">
             <div class="item-box">
               <h3 class="icons-box-title"><a href="#">Mision Statement</a></h3>
-              <p>Become a part of the story</p>
-              <div class="hidden-area">
-                <a href="#" class="btn btn-style-3">Read More</a>
-              </div>
+              <p>5. To accomplish No. 2 and 3 above, we will plant churches within five minutes walking distance in every 
+                city and town of developing countries and within fifteen minutes driving distance in every city and town of 
+                developed countries.</br>
+
+                6. We will pursue these objectives until every Nation in the world is reached for the Lord Jesus Christ.
+
+​</p>
+              
             </div>
           </div>
 
@@ -107,7 +118,7 @@
             <div class="item-box">
               <h3 class="icons-box-title"><a href="#">Monthly Theme</a></h3>
               @foreach($theme as $theme)
-              <p>{{$theme->created_at,date('m')}}-{{$theme->title}}</p>
+              <p>{{date('F', strtotime($theme->created_at))}}-{{$theme->title}}</p>
               <div class="hidden-area">
                 <a href="#" class="btn btn-style-3">Read More</a>
               </div>
@@ -208,7 +219,7 @@
 
       
       <!-- Page section -->
-      <div class="half-bg-col size2 count-event two-cols">
+      <div class="half-bg-col size2 count-event two-cols" id="upc">
 
         <div class="img-col-left"><div class="col-bg left-bg" data-bg="dp/images/960x728_bg1.jpg"></div></div>
 
@@ -535,13 +546,11 @@
   
 
       <!-- Google map -->
-      <div class="map-section">
-
-        <div id="googleMap" class="map-container"></div>
-
+      <div id="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4790.757466480856!2d8.784267627359275!3d53.10339180525732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b12853fcc74fc7%3A0x3f3c57811300fbc1!2sWaller%20Heerstra%C3%9Fe%20165%2C%2028219%20Bremen!5e0!3m2!1sen!2sde!4v1635394080549!5m2!1sen!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+     
       </div>
-      
-      <!-- Page section -->
+          <!-- Page section -->
       <div class="page-section no-offset">
         
         <div class="container wide">

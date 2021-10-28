@@ -3,8 +3,6 @@
 
 <style>
 
-
-
 .ergebnis {
     font-size: 1rem;
     font-family: sans-serif;
@@ -176,68 +174,49 @@ input:checked + .roundbutton:before  {
 </div>
 </nav>    
 <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
-
-</div>
-<div class="container-fluid mt--7">
-    <div class="row">
-        <div class="col">
-            <div class="card shadow">
-                <div class="card-header border-0">
-                <div class="row align-items-center">
-                        <div class="col-8">
-                           <div id="ergebnis" class="ergebnis">
-                             Live-streaming is <span id="status">OFF</span>.
-                            </div>
-                             <label class="toggle">
-                              <input id="toggleswitch" type="checkbox">
-                              <span class="roundbutton"></span>
-                            </label>
-                        </div>
-                        <div class="col-4 text-right">
-                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editFields">
-                                Edit Fields
-                         </button>
-                           
-                        </div>
+@if (session('success'))
+                     <div class="alert alert-success alert-dismissible fade show" role="alert">
+                       <strong>{{session('success')}}</strong> 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                     </div>
+                    @endif
+                    @if (session('error'))
+                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                       <strong>{{session('error')}}</strong> 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                     </div>
+                    @endif
+                    @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+         
+                     @foreach ($errors->all() as $error)
+                     <strong>{{ $error }}</strong> 
+                     @endforeach
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                      </button>
                     </div>
-                
-
-                
-                </div>
-                @include('modals.edit_livestream_fields_modal')
-                <div class="col-6">
-                    <label class="form-control-label" for="input-name">{{ __('Youtube Link') }}</label>
-                    <input type="text" name="feed" id="feed" class="form-control form-control-alternative{{ $errors->has('feed') ? ' is-invalid' : '' }}" placeholder="{{ __('Youtube Link') }}" value="{{ old('feed') }}"  >
-                    <label class="form-control-label" for="input-name">{{ __('Title of Message') }}</label>
-                    <input type="text" name="title" id="title" class="form-control form-control-alternative{{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="{{ __('Title of Message') }}" value="{{ old('title') }}"  >
-
-                    <label class="form-control-label" for="input-name">{{ __('Preacher') }}</label>
-                    <input type="text" name="preacher" id="preacher" class="form-control form-control-alternative{{ $errors->has('preacher') ? ' is-invalid' : '' }}" placeholder="{{ __('preacher') }}" value="{{ old('preacher') }}">
-
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-success mt-4">{{ __('Publish') }}</button>
-                      </div>
-                 </div>
-
-               
-                <div class="card-footer py-4">
-                    <nav class="d-flex justify-content-end" aria-label="...">
-                        
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
-        
-    <footer class="footer">
-<div class="row align-items-center justify-content-xl-between">
-
-</div></footer>    </div>
-    </div>
+                    @endif
+                    
+</div>
+<div class="container-fluid mt--12" >
+@if($count==1)
+        @include('livestreams.stream_on')
+    @else
+        @include('livestreams.stream_off')
+    @endif 
+    
+  
+  
+</div>
 
     
     <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
-        <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     
             
     <!-- Argon JS -->
@@ -247,6 +226,7 @@ input:checked + .roundbutton:before  {
 
 var input = document.getElementById('toggleswitch');
     var outputtext = document.getElementById('status');
+    
 
     input.addEventListener('change',function(){
         if(this.checked) {
@@ -254,11 +234,27 @@ var input = document.getElementById('toggleswitch');
             document.getElementById("feed").setAttribute("readonly", "readonly");
             document.getElementById("preacher").setAttribute("readonly", "readonly");
             document.getElementById("title").setAttribute("readonly", "readonly");
+            document.getElementById("program").setAttribute("readonly", "readonly");
+            document.getElementById("js").remove();
+              document.getElementById("transmission").style.display="block";
+            document.getElementById("feedDisplayDiv").style.display="block";
+            
+
         } else {
             outputtext.innerHTML = "OFF";
             document.getElementById("feed").removeAttribute("readonly");
             document.getElementById("preacher").removeAttribute("readonly");
-            document.getElementById("title").removeAttribute("readonly");
+            document.getElementById("title").removeAttribute("readonly"); 
+            document.getElementById("program").removeAttribute("readonly");
+            document.getElementById("list_sb").innerHTML = '<input type="submit" value="Publish" class="btn btn-success mt-4" id="js"/>';
+          
+            document.getElementById("transmission").style.display="none";
+            
+            document.getElementById("feedDisplayDiv").style.display="none";
+            
+
+
+            
         }
     });
 

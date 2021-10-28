@@ -18,6 +18,12 @@ use App\Http\Controllers\ChurchProgramController;
 use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\WelfareController;
+use App\Http\Controllers\MeetingController;
+
+use App\Http\Controllers\LivestreamController;
+
+
+
 
 
 
@@ -38,9 +44,10 @@ Route::get('/ff', function () {
     return view('livestream');
 });
 
-
+Route::get('church-welfare', [WelfareController::class, 'view_welfare'])->name('welfare.view_welfare');
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/events', function () {
     return view('events');
@@ -50,9 +57,11 @@ Route::get('/ets', function () {
     return view('event.create_church_event');
 });
 
-Route::get('/livestream', function () {
-    return view('livestream');
+Route::get('/ll', function () {
+    return view('livestreams/go_live');
 });
+
+
 
 Route::get('/contact-pastor', function () {
     return view('contact_pastor');
@@ -61,16 +70,18 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
-Route::get('/sermons-page', function () {
-    return view('sermon.sermons_page');
-});
+
 
 Auth::routes();
 
+Route::get('/live', [LivestreamController::class, 'live'])->name('livestream.live');
+   
+
 Route::get('/church-programs', [App\Http\Controllers\EventController::class, 'upcoming_event'])->name('upcoming_event');
 
-
 Route::get('/sermons-page', [App\Http\Controllers\SermonController::class, 'view_all'])->name('sermons_page');
+
+Route::get('/weekly-and-monthly-programs', [App\Http\Controllers\MeetingController::class, 'view_meetings'])->name('meeting.view_meetings');
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -108,10 +119,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::apiResource('contact', ContactController::class);
 
     Route::apiResource('welfare', WelfareController::class);
-    
-    Route::get('church-welfare', [WelfareController::class, 'view_welfare'])->name('welfare.view_welfare');
-    
 
+    Route::apiResource('meeting', MeetingController::class);
+
+    Route::apiResource('livestream', LivestreamController::class);
+    
+    Route::post('/stop-transmission', [LivestreamController::class, 'stop_transmission'])->name('livestream.stop_transmission');
+    
+    
+    Route::get('/lll', [LivestreamController::class, 'go_live'])->name('go_live');
 
 
 });

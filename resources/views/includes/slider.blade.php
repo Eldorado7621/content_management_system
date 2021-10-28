@@ -31,7 +31,7 @@
               data-whitespace="nowrap"
               data-frames='[{"delay":450,"speed":2000,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]'
               data-responsive_offset="on"
-              data-elementdelay="0.05" ><p>Learn how you can get involved</p>
+              data-elementdelay="0.05" ><p></p>
             </div>
 
             <!-- - - - - - - - - - - - - - End of Layer 2 - - - - - - - - - - - - - - - - -->
@@ -45,7 +45,9 @@
               data-frames='[{"delay":750,"speed":2000,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeOut"},{"delay":"wait","speed":1000,"frame":"999","to":"y:[175%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"Power2.easeInOut"}]'
               data-responsive_offset="on"
               data-elementdelay="0.05" >
-              <a href="#" class="btn btn-big btn-style-7">Serve with us</a>
+              @if($livestatus)
+              <a href="{{route('livestream.live')}}" class="btn btn-big btn-style-7">We are Live</a>
+              @endif
             </div>
 
             <!-- - - - - - - - - - - - - - End of Layer 3 - - - - - - - - - - - - - - - - -->

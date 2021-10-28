@@ -44,7 +44,7 @@
 
               <nav id="main-navigation" class="main-navigation">
                 <ul id="menu" class="clearfix">
-                  <li class="current"><a href="{{route('home')}}">Home</a>
+                  <li class="current"><a href="{{route('index')}}">Home</a>
                    
                   </li>
                   <li><a href="#">The Church</a>
@@ -61,16 +61,17 @@
                     </div>
                   </li>
 				  
-				  <li ><a href="#">Welfare service</a>
+				  <li ><a href="{{route('welfare.view_welfare')}}">Welfare service</a>
                    
                   </li>
                   <li><a href="#">NEWS & Events</a>
                     <!--sub menu-->
                     <div class="sub-menu-wrap">
                       <ul>
-                        <li><a href="events_list.html">Upcoming Programmes</a></li>
-                        <li><a href="events_month.html">Weekly and Monthly meetings</a></li>
-                        <li><a href="events_masonry.html">Parish Calendar</a></li>
+                      
+                        <li><a href="#upc">Upcoming Programmes</a></li>
+                        <li><a href="{{route('meeting.view_meetings')}}">Weekly and Monthly meetings</a></li>
+                        <li><a href="{{route('upcoming_event')}}">Parish Calendar</a></li>
                         <li><a href="events_single.html">General News</a></li>
                         <li><a href="events_single.html">Job Opportunities</a></li>
                         <li><a href="events_single.html">New Governmanet Policies(related to church and citizens</a></li>
@@ -82,9 +83,9 @@
                     <!--sub menu-->
                     <div class="sub-menu-wrap">
                       <ul>
-                        <li><a href="portfolio_2_col.html">Livestream</a></li>
+                        <li><a href="{{route('livestream.live')}}">Livestream</a></li>
                         <li><a href="portfolio_3_grid.html">Photo Gallery</a></li>
-                        <li><a href="portfolio_masonry.html">Sermons</a></li>
+                        <li><a href="{{route('sermons_page')}}">Sermons</a></li>
                       </ul>
                     </div>
                   </li>
@@ -94,7 +95,7 @@
                       <ul>
                         <li><a href="blog_classic.html">Ask the Pastor</a></li>
                         <li><a href="blog_masonry.html">Prayer Request</a></li>
-                        <li><a href="blog_main.html">Church Locator</a></li>
+                        <li><a href="#map">Church Locator</a></li>
                       </ul>
                     </div>
                   </li>

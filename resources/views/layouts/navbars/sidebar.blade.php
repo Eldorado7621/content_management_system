@@ -200,6 +200,11 @@
                                     {{ __('Church Welfare') }}
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('meeting.index') }}">
+                                    {{ __('Weekly and monthly programs') }}
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

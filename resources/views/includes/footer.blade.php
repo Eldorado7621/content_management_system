@@ -46,11 +46,7 @@
               <div class="widget">
                 
                 <h5 class="widget-title">About Us</h5>
-        
-                <p>Lorem ipsum dolor. Mauris fermentum dictum magna. Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit. Aenean auctor wisi et urna. Aliquam erat volutpat. </p>
-
-                <a href="#" class="btn btn-style-8">Give Online</a>
-        
+                 <p></p>
               </div>
         
             </div>
@@ -64,11 +60,10 @@
                 <ul class="menu-list">
                     
                   <li><a href="#">Location & Service Times</a></li>
-                  <li><a href="#">Next Steps</a></li>
+                  
                   <li><a href="#">Vision & Beliefs</a></li>
-                  <li><a href="#">Leadership</a></li>
-                  <li><a href="#">First Time Guest Survey</a></li>
-                  <li><a href="#">FAQ</a></li>
+                
+                 
                 
                 </ul>
 
