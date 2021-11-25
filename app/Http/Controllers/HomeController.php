@@ -10,6 +10,7 @@ use App\Models\ChurchEvent;
 use App\Models\Testimony;
 use App\Models\Contact;
 use App\Models\Livestream;
+use App\Models\Department;
 
 use Illuminate\Http\Request;
 
@@ -22,7 +23,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+       // $this->middleware('auth');
     }
 
     /**
@@ -63,6 +64,7 @@ class HomeController extends Controller
         $banners=Banner::all();
         $about=About::all();
         $theme=Theme::all();
+        $depts=Department::all();
         return view('index')->with(['banners'=>$banners,
                                     'about'=>$about,
                                     'theme'=>$theme,
@@ -71,11 +73,24 @@ class HomeController extends Controller
                                     'testimonys'=>$testimonys,
                                     'contacts'=>$contacts,
                                     'livestatus'=>$livestatus,
-                                    '$livestream'=>$livestream]);
+                                    'livestream'=>$livestream,
+                                    'depts'=>$depts,
+                                ]);
     }
 
     public function create_user()
     {
         return view('create_users');
+    }
+
+    public function monthlyTheme(Request $request)
+    {
+        $monthlyTheme = array(
+            "title" =>  $request->title,
+            "message" =>  $request->message,
+            "reference" =>  $request->reference,
+        );
+        return view('monthly-theme')->with('monthlyTheme',$monthlyTheme);
+           
     }
 }

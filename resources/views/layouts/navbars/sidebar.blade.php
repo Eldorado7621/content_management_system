@@ -144,6 +144,11 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('department.index') }}">
+                                    {{ __('Department') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('monthly-theme.index') }}">
                                     {{ __('Monthly Theme') }}
                                 </a>

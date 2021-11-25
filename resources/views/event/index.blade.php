@@ -95,11 +95,8 @@
 </body></html>
 <script>
 $(document).ready(function(){
-
  var count = 1;
-
  dynamic_field(count);
-
  function dynamic_field(number)
  {
   html = '<tr>';
@@ -118,17 +115,14 @@ $(document).ready(function(){
             $('tbody').html(html);
         }
  }
-
  $(document).on('click', '#add', function(){
   count++;
   dynamic_field(count);
  });
-
  $(document).on('click', '.remove', function(){
   count--;
   $(this).closest("tr").remove();
  });
-
  $('#dynamic_form').on('submit', function(event){
         event.preventDefault();
         $.ajax({
@@ -159,6 +153,5 @@ $(document).ready(function(){
             }
         })
  });
-
 });
 </script>

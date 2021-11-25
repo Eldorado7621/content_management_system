@@ -52,50 +52,57 @@
           <div class="row">
            
             <div class="col-lg-8">
-              
+               @if (session('success'))
+                     <div class="alert alert-success alert-dismissible fade show" role="alert">
+                       <strong>{{session('success')}}</strong> 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                     </div>
+                    @endif
+                    @if (session('error'))
+                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                       <strong>{{session('error')}}</strong> 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                     </div>
+                    @endif
               <h2>We'd Love To Hear From You!</h2>
               <p>Feel free to send us any questions you may have. We are happy to answer them.</p>
 
-              <form id="contact-form" class="contact-form style-2">
-
+              <form method="post" action="{{route('contact-pastor')}}" class="contact-form style-2">
+                @csrf
                 <div class="contact-item">
                   
                   <label class="required">Your Name</label>
-                  <input type="text" name="cf-name" required>
+                  <input type="text" name="name" required>
 
                 </div>
 
                 <div class="contact-item">
                   
                   <label class="required">Your Email</label>
-                  <input type="email" name="cf-email" required>
+                  <input type="email" name="email" required>
 
                 </div>
-
                 <div class="contact-item">
                   
-                  <label>Phone</label>
-                  <input type="tel" name="cf-phone">
-
-                </div>
-
-                <div class="contact-item">
-                  
-                  <label>I'm interested in</label>
-                  <input type="text" name="cf-subject">
+                  <label>Subject</label>
+                  <input type="text" name="subject">
 
                 </div>
 
                 <div class="contact-item">
                   
                   <label>Message</label>
-                  <textarea rows="4" name="cf-message"></textarea>
+                  <textarea rows="4" name="message"></textarea>
 
                 </div>
 
                 <div class="contact-item">
                   
-                  <button type="submit" class="btn btn-style-4" data-type="submit">Submit</button>
+                  <button type="submit" class="btn btn-primary" data-type="submit">Submit</button>
 
                 </div>
 

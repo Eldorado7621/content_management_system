@@ -103,7 +103,7 @@
 
                 6. We will pursue these objectives until every Nation in the world is reached for the Lord Jesus Christ.
 
-​</p>
+​               </p>
               
             </div>
           </div>
@@ -120,7 +120,16 @@
               @foreach($theme as $theme)
               <p>{{date('F', strtotime($theme->created_at))}}-{{$theme->title}}</p>
               <div class="hidden-area">
-                <a href="#" class="btn btn-style-3">Read More</a>
+               
+             
+              <form method="post" action="{{route('monthlyThemeDisplay')}}" enctype="multipart/form-data">
+              @csrf
+                <input type="hidden" name="title" value="{{$theme->title}}"/>
+                <input type="hidden" name="message" value="{{$theme->message}}"/>
+                <input type="hidden" name="reference" value="{{$theme->reference}}"/>
+
+                <input type="submit" value="Read More..." class="btn btn-success"/>
+              </form>
               </div>
               @endforeach
             </div>
@@ -377,119 +386,32 @@
           <div class="title-holder align-center">
             
             <div class="pre-title color2">Get Involved</div>
-            <h2 class="section-title">Our Ministries</h2>
+            <h2 class="section-title">Departments</h2>
 
           </div>
           
           <div class="icons-box style-2 type-2 flex-row item-col-3">
+         
+          @foreach($depts as $dept)
 
             <div class="fx-col">
               
               <!-- - - - - - - - - - - - - - Icon Box Item - - - - - - - - - - - - - - - - -->        
               <div class="icons-wrap">
 
-                <div class="bg-img" data-bg="dp/images/430x420_img1.jpg"></div>
+                <div class="bg-img" data-bg="{{$dept->img}}"></div>
 
                 <div class="icons-item">
                   <div class="item-box">
-                    <h4 class="icons-box-title"><a href="#">Kids</a></h4>
-                    <p>Ages 1 - 12</p>
+                    <h4 class="icons-box-title"><a href="{{ route('department.deptDetails', $dept->id) }}">{{$dept->name}}</a></h4>
+                    <p>{{$dept->bible}}</p>
                   </div>
                 </div>
 
               </div>
 
             </div>
-
-            <div class="fx-col">
-              
-              <!-- - - - - - - - - - - - - - Icon Box Item - - - - - - - - - - - - - - - - -->        
-              <div class="icons-wrap">
-                
-                <div class="bg-img" data-bg="dp/images/430x420_img2.jpg"></div>
-
-                <div class="icons-item">
-                  <div class="item-box">
-                    <h4 class="icons-box-title"><a href="#">Students</a></h4>
-                    <p>Grade 6 - 12</p>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-
-            <div class="fx-col">
-              
-              <!-- - - - - - - - - - - - - - Icon Box Item - - - - - - - - - - - - - - - - -->        
-              <div class="icons-wrap">
-                
-                <div class="bg-img" data-bg="dp/images/430x420_img3.jpg"></div>
-
-                <div class="icons-item">
-                  <div class="item-box">
-                    <h4 class="icons-box-title"><a href="#">Worship</a></h4>
-                    <p>Worship Ministry</p>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-
-            <div class="fx-col">
-              
-              <!-- - - - - - - - - - - - - - Icon Box Item - - - - - - - - - - - - - - - - -->        
-              <div class="icons-wrap">
-                
-                <div class="bg-img" data-bg="dp/images/430x420_img4.jpg"></div>
-
-                <div class="icons-item">
-                  <div class="item-box">
-                    <h4 class="icons-box-title"><a href="#">Women</a></h4>
-                    <p>Women Ministry</p>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-
-            <div class="fx-col">
-              
-              <!-- - - - - - - - - - - - - - Icon Box Item - - - - - - - - - - - - - - - - -->        
-              <div class="icons-wrap">
-                
-                <div class="bg-img" data-bg="dp/images/430x420_img5.jpg"></div>
-
-                <div class="icons-item">
-                  <div class="item-box">
-                    <h4 class="icons-box-title"><a href="#">Missions</a></h4>
-                    <p>Missions & Causes</p>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-
-            <div class="fx-col">
-              
-              <!-- - - - - - - - - - - - - - Icon Box Item - - - - - - - - - - - - - - - - -->        
-              <div class="icons-wrap">
-                
-                <div class="bg-img" data-bg="dp/images/430x420_img6.jpg"></div>
-
-                <div class="icons-item">
-                  <div class="item-box">
-                    <h4 class="icons-box-title"><a href="#">LifeGroups</a></h4>
-                    <p>Find Your Fit</p>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
+          @endforeach
 
           </div>
 

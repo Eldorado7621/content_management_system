@@ -21,6 +21,8 @@ use App\Http\Controllers\WelfareController;
 use App\Http\Controllers\MeetingController;
 
 use App\Http\Controllers\LivestreamController;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\EmailController;
 
 
 
@@ -44,10 +46,24 @@ Route::get('/ff', function () {
     return view('livestream');
 });
 
+Route::get('/depts', function () {
+    return view('dept.department_details');
+});
+
+Route::get('/contact-pastor', function () {
+    return view('contact_pastor');
+});
+
+
+Route::post('/contact-pastor', [EmailController::class, 'sendEmail'])->name('contact-pastor');
+
+Route::get('department-details={id}', [DepartmentController::class, 'deptDetails'])->name('department.deptDetails');
 Route::get('church-welfare', [WelfareController::class, 'view_welfare'])->name('welfare.view_welfare');
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::post('/monthlyThemeDisplay', [HomeController::class, 'monthlyTheme'])->name('monthlyThemeDisplay');
 
 Route::get('/events', function () {
     return view('events');
@@ -69,13 +85,12 @@ Route::get('/contact-pastor', function () {
 Route::get('/login', function () {
     return view('auth.login');
 });
-
-
-
 Auth::routes();
 
 Route::get('/live', [LivestreamController::class, 'live'])->name('livestream.live');
    
+
+Route::post('/monthly-theme', [ThemeController::class, 'view_monthly_theme'])->name('monthly-theme.view_monthly_theme');
 
 Route::get('/church-programs', [App\Http\Controllers\EventController::class, 'upcoming_event'])->name('upcoming_event');
 
@@ -123,6 +138,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::apiResource('meeting', MeetingController::class);
 
     Route::apiResource('livestream', LivestreamController::class);
+
+    Route::apiResource('department', DepartmentController::class);
+    Route::post('/edit-department-banner', [DepartmentController::class, 'updateBanner'])->name('department.updateBanner');
+    
     
     Route::post('/stop-transmission', [LivestreamController::class, 'stop_transmission'])->name('livestream.stop_transmission');
     

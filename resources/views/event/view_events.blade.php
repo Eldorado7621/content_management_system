@@ -88,7 +88,7 @@
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                
-                                               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#b{{$event->id}}">
+                                               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#b{{$event->id}}">
                                                     Delete
                                                 </button>
                                                 

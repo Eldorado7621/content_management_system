@@ -57,9 +57,12 @@ class ThemeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function view_monthly_theme(Request $request)
     {
         //
+        $theme=array($request->title,$request->message,$request->reference);
+        return view('monthly_theme')->with('theme',$theme);
+
     }
 
     /**
